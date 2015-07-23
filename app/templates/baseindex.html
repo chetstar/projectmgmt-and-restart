@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+ {% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<html lang="en">
+    {% block head %}
+    <title>Argonaut Links! DST<3{% block title %}{% endblock %}</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+
+
+<link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+   <!--   <script src="/static/js/bootstrap.min.js"></script> -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+
+    <!--  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">-->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/datepicker.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/datepicker3.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+
+<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-modal.css') }}">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+ -->  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='ico/favicon.ico') }}"> -->
+
+
+    {% endblock %}
+  <body>
+    {% block navbar %}
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+        <button class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">AC Project Managment Center</a>
+        <div class="nav-collapse">
+          {% block navbar_right %}
+          <ul class="nav navbar-nav pull-right">
+
+          </ul>
+
+            <ul class="nav navbar-nav">
+           <li><a href="http://CoveContext/RunReport.i4?reportUUID=cd521124-ac30-4c92-914e-23d9f793e0d2&primaryOrg=1&clientOrg=1">Emanio Reports</a></li> 
+            <!--   <li><a href="/graphs">Stats</a></li>-->
+
+                                   
+              <li class="dropdown">
+                  
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+
+                  <li><a href="/start">Projects Overview</a></li>            
+                  <li class="divider"></li>
+                  <li class="dropdown-header">Jump to a Project</li>
+                  {% for project in P %}
+                  <li><a href="{{ url_for('project_outline', name = project.id) }}">{{ project.name}}</a></li>
+{% endfor %}
+                </ul>
+              </li>
+               <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Outlines <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                   {% for project in P %}
+                  <li><a href="{{ url_for('outline', name = project.id) }}">{{ project.name}}</a></li>
+{% endfor %}
+                </ul>
+              </li>
+            </ul>
+            </div><!--/.nav-collapse -->
+      </div></nav>
+<br><br><br></body></script></script></script>
+          {% endblock %}
+
+
+    {% endblock %}
+
+          {% block content %}
+
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+            <div class="container">
+        <h1>Executive Management Solutions!</h1>
+        <p>The one-stop for task tracking.</p>
+        <p><a href="/start" class="btn btn-primary btn-lg" role="button">Get Started »</a></p>
+      </div>
+    </div>
+
+  
+
+    
+          {% endblock %}
+
+
+ {% block scripts %}
+
+  <div id="footer">
+        <div class="container">
+            <div class="row ">
+                &copy; 2014 AC Business Intelligence & Decision Support | All Right Reserved
+
+            </div>
+            
+        </div>
+       
+    </div> 
+{{ super() }}
+
+           <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap-datepicker.js') }}"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+{% endblock %}
+
+
+</html>

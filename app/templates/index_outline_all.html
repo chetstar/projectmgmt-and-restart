@@ -1,0 +1,64 @@
+{% extends "baseindex.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+{% block content %}
+<p></div></div>
+      <div class="container">
+      <div class="row">
+        <div class="col-md-9 ">
+
+<h3><b><a href="{{ url_for('project_outline', name = project.id) }}"data-toggle="tooltip" data-placement="right" title="Click to Add Goals">Project:</a> {{ project.name }}</b></h3>
+
+    <ol type="I">
+      {% for pgoal in project.goals.all() %}
+   <h4>   <li><a href="{{ url_for('strategy_outline', name = project.id,goal=pgoal.id) }}" data-toggle="tooltip" data-placement="right" title="Click to add Strategies">Objective:</a> {{ pgoal.goal }}</h4>
+
+        <ol type="A">
+          {% for pstrat in pgoal.strategies.all() %}
+         <h5><li> <a href="{{ url_for('task_outline', name = project.id,goal=pgoal.id,strategy=pstrat.id) }}"data-toggle="tooltip" data-placement="right" title="Click to edit Tasks">Strategy:</a>  {{ pstrat.strategy }}</h5>
+
+            <ol type="1">
+              {% for ptask in pstrat.tasks.all() %}
+            <li>  {% if ptask.complete ==True %}  <span class="glyphicon glyphicon-ok " style="color:green"></span> {% else %} <span class="glyphicon glyphicon-remove" style="color:#C0C0C0"></span> {% endif %} Task: {{ ptask.task }} {% if ptask.deadline | reverse ==1%}  <font color="red"> Deadline {{ ptask.deadline.strftime('%b %d %Y' )}}</font> {% else %} Deadline {{ ptask.deadline.strftime('%b %d %Y ')}} {% endif %} </li>
+              {% endfor %}
+            </ol>
+
+           </li>
+           {% endfor %}
+         </ol>
+
+       </li>
+       {% endfor %}
+
+    </ol>
+</div></div></div></p>
+
+
+
+
+<!-- Form Name -->
+
+
+<!-- Text input-->
+          
+
+          {% endblock %}
+        </div>
+        <hr>
+        {% block footer %}
+        <footer class="footer">
+            <p>&copy; AC chet</p>
+        </footer>
+        {% endblock %}
+          
+    {% block js_footer %}
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    {% endblock %}
+  </body>
+</html>

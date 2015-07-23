@@ -1,0 +1,56 @@
+{% extends "baseindex.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+  {% block navbar %}
+
+{{ super() }}
+ <div class="row">
+  <div class="col-md-6">
+      <div class="col-md-6">
+    <div class="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>New Feature!</strong> <a href="http://bhcsweb3:5000/restart">Reset Servers</a> 
+   </div>  </div>  </div> </div> {% endblock %}
+
+          {% block content %}
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+              <div class="col-md-11">
+           <div class="well well-lg">
+            <div class="container">
+        <h1>Update Staging</h1>
+        <p>Save a work in progress into the production system.</p>
+  {% for item in stageFiles %} 
+  {% if 'Backup' not in item and 'dummy' not in item %}
+  <div class="col-md-5">
+  <p><a href="{{ url_for('stageupdate', file = item) }}" class="btn btn-default" role="button">{{item}}</a></p> </div>
+ {%endif%} {%endfor%}
+      </div> </div> </div>
+    </div></div>  <div class="row"></div>
+          <div class="container">
+            <div class="well well-lg">
+      <div class="row">
+        <div class="col-md-12">
+       <p> <h1>Files in production</h1></p>
+        <p>Click a file to run and or send it to Emanio!</p>
+  {% for item in prodFiles %} 
+  {% if 'Backup' not in item %}
+  <div class="col-md-6">
+   <p><a href="{{ url_for('argonautwho', DB = item) }}" class="btn btn-info" role="button">{{item}}</a></p> </div><div>
+ {%endif%} {%endfor%}
+      </div></div></div></div><br><br>
+      <div class="row">
+        <div class="col-md-10">
+        <br><br></div></div></div></div>
+  {% endblock %}
+
+
+
+
+
+
+
+<!-- /.col-sm-4 -->

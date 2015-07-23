@@ -1,0 +1,127 @@
+{% extends "baseindex.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+          {% block content %}
+          <ol class="breadcrumb">
+            <li><a href="/start">All Projects</a></li>
+  <li class="active">Objective</li>
+</ol></div>
+<div class="well">
+      <div class="row">
+        <div class="col-md-12">
+
+<div class="list-group">
+     <div class="alert alert-info ">Project: {{ project.name }}</div>  {% for message in get_flashed_messages() %}
+                       <span style="color: red;">[{{ message }}]</span>
+{% endfor %}
+</div>
+      </div></p></div></div>
+        <div class="row">
+        <div class="col-md-9">
+
+
+<a href="#" class="btn btn-lg btn-success pull-right"
+   data-toggle="modal"
+   data-target="#basicModal">Add Objective</a>
+   <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h4 class="modal-title" id="myModalLabel">Objective</h4>
+            </div>
+            <div class="modal-body">
+                <h3><div class="well">
+      <div class="row">
+        <div class="col-md-12 ">
+            <div id="form-section">
+    </div>
+      
+   <b> <p> <h2>Add Objective to {{ project.name }}</h2></p>
+    <form class="form form-horizontal" method="post" role="gform" id='gform'>
+    {{ gform.hidden_tag() }}
+    {{ wtf.form_errors(gform) }}
+                                <label class="control-label" for="goal">
+
+                                    Objective *
+
+                                </label>
+                                <input id="goal" class="form-control" type="text"  name="goal"  required></input>
+                            </div>
+                         </h3>
+             {{ wtf.form_field(gform.submit) }}<br>       </div>
+<br>
+          </p></form></b><br></h3>
+       
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+                  </div></div></div>
+{% for item in zipit %} 
+      <!-- Example row of columns -->
+      <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+         
+        </div>
+      </div>
+
+      <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+        </div> </div></div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+
+ <h3><b>Objective:</b> {{item[0].goal}}  <br> </h3>Tasks complete {% if item[1][4] ==0 or item[1][2] ==0 %} 0%  {%endif%}
+</h3>
+    <div class="row">
+        <div class="col-md-6">
+        <div class="progress">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {% if item[1][2] ==0 or item[1][4] ==0 %} 0% {% else %} {{'%0.1f'| format((item[1][2]/item[1][4])*100|float)}}% {%endif%}; ">
+ {% if item[1][4] ==0 or item[1][2] ==0 %} 0% {% else %} {{'%0.1f'| format((item[1][2]/item[1][4])*100|float)}}% {%endif%}
+  </div>
+</div></div>
+            </div></div>
+            <div class="panel-body">
+         <div class="row">
+            <div class="col-md-1 ">
+                <p><a href="{{ url_for('strategy_outline', name = project.id, goal=item[0].id) }}" class="btn btn-primary" role="button">Strategies</a></p> </div>
+             <div class="col-md-1 ">
+                <form class="horizontal" method="post" role="delete_form" id='delete_form'>
+             <div class="col-md-1 "> 
+             {{ delete_form.hidden_tag() }}
+             <input type="hidden"  type=text  id="row_id" name="row_id" value="{{item[0].id}}" >
+                      <input class="btn btn-danger" id="submitd" name="submitd" value="Delete" type="submit">
+                          </form>
+             </form></div></div>
+ </div> </div> </div>
+            </div>
+          </div></div>
+            {% endfor %}
+<br></b></div></div>  
+<div class="well">
+      <div class="row">
+        <div class="col-md-12 offset2">
+   <br></b></div></div></div></div>
+
+
+
+
+<!-- Form Name -->
+
+
+<!-- Text input-->
+          
+  <div id="form-section"> 
+          {% endblock %}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+{% extends "baseindex.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+<html lang="en">
+
+</div>
+
+{% block content %}
+<ol>
+  {% for project in P %}
+  <li> Project: {{ project.name }}
+
+    <ol type="A">
+      {% for pgoal in project.goals.all() %}
+      <li>Objective: {{ pgoal.goal }}
+
+        <ol type="a">
+          {% for pstrat in pgoal.strategies.all() %}
+          <li> Strategy: {{ pstrat.strategy }}
+
+            <ol type="1">
+              {% for ptask in pstrat.tasks.all() %}
+              <li>Task: {{ ptask.task }} complete? {{ptask.complete}}</li>
+              {% endfor %}
+            </ol>
+
+           </li>
+           {% endfor %}
+         </ol>
+
+       </li>
+       {% endfor %}
+
+    </ol>
+
+  </li>
+  {% endfor %}
+</ol>
+
+
+
+<!-- Form Name -->
+
+
+<!-- Text input-->
+          
+
+          {% endblock %}
+        </div>
+        <hr>
+  </body>
+</html>

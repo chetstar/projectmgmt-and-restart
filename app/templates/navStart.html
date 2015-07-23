@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+ {% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+<html lang="en">
+    {% block head %}
+    <title>Argonaut Links! DST<3{% block title %}{% endblock %}</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+
+
+<link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+   <!--   <script src="/static/js/bootstrap.min.js"></script> -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+
+    <!--  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">-->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/datepicker.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/datepicker3.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+
+<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-modal.css') }}">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+ -->  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='ico/favicon.ico') }}"> -->
+
+
+    {% endblock %}
+  <body>
+
+
+
+          {% block content %}
+      <div class="row">
+        <div class="col-md-4">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+            <div class="container">
+        <div class="alert alert-success" role="alert"><h1>Links!</div></h1>
+        <p></p>
+
+  </div>
+</div></div></div>
+   <div class="row">
+       <div class="col-md-1"></div>
+        <div class="col-md-8">
+<div class="jumbotron">
+  <div class="container">
+
+<p></span><a class="btn btn-default" role="button" href="http://argonaut/login"><span class="glyphicon glyphicon-signal" aria-hidden="true"> Request Center!</a>  </p>
+<p></span><a class="btn btn-default" role="button" href="http://winspssv3:5000/admin/userview/"><span class="glyphicon glyphicon-user" aria-hidden="true"> User Account</a>  </p>
+<p></span><a class="btn btn-default" role="button" href="http://hpmxl2221nxk:5000/restart"><span class="glyphicon glyphicon-refresh" aria-hidden="true"> Server Restart Main</a>  </p>
+<p><a class="btn btn-default" role="button" href="http://bhcsweb3:5000/restart"><span class="glyphicon glyphicon-refresh " aria-hidden="true"></span> Server Restart Backup</a> </p>
+<p><a class="btn btn-default" role="button" href="http://winspssv4:5000/argonaut"><span class="glyphicon glyphicon-font" aria-hidden="true"></span> Argonaut stage and push</a></p>
+ <p> <a class="btn btn-default" role="button" href="http://winspssv3:5000/"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Production Results</a></p>
+  <p><a class="btn btn-default" role="button" href="http://winspssv4:5000/theportal"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Data Portal</a> </p>
+  <p>  <a class="btn btn-default" role="button" href="http://argonaut/start"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> Project MGMT</a> </p>
+<p> <a class="btn btn-default" role="button"href="http://CoveContext/RunReport.i4?reportUUID=cd521124-ac30-4c92-914e-23d9f793e0d2&primaryOrg=1&clientOrg=1">Project MGMT in Emanio</a></p>
+<p> <a class="btn btn-default" role="button"href="http://winspssv4:5000/argonaut/emanio"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Emanio Problems?</a></p>
+</span></a></p></span></a></p></div></div></div></div></div>
+      <div class="container">
+             <div class="row">
+        <div class="col-md-4 offset2">
+        This is just a test
+{{ wtf.quick_form(aform) }}
+  {% if AS ==0 %}Failed!{%endif%}
+  {%if AS==1 %} Success  {{email}} {%endif%} 
+  {% if AS ==None %}Login to nowhere{%endif%}
+  
+<br>
+  
+<br>
+      </div>
+    </div>
+
+     </div>
+    </div>   </div>
+    </div>
+
+    
+          {% endblock %}
+
+
+ {% block scripts %}
+
+  <div id="footer">
+        <div class="container">
+            <div class="row ">
+                &copy; 2014 AC Business Intelligence & Decision Support | All Right Reserved
+
+            </div>
+            
+        </div>
+       
+    </div> 
+           <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap-datepicker.js') }}"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+{% endblock %}
+
+
+</html>

@@ -1,0 +1,55 @@
+{% extends "baseindex.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+          {% block content %}
+                <div class="jumbotron">
+            <div class="container">
+        <h1>Project Outlines!</h1>
+        <p>See your Project in printable Outline format.</p>
+          </div>
+
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      Project Outlines
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+   {% for project in P %}
+                  <li><a href="{{ url_for('outline', name = project.id) }}">{{ project.name}}</a></li>
+{% endfor %}
+    </ul>
+  </div>
+</div>
+       
+      </div>
+    </div>
+
+
+
+
+
+          {% endblock %}
+        </div>
+        <hr>
+        {% block footer %}
+        <footer class="footer">
+            <p>&copy; AC chet</p>
+        </footer>
+        {% endblock %}
+          
+    {% block js_footer %}
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    {% endblock %}
+  </body>
+</html>
+
+
+
+<!-- /.col-sm-4 -->

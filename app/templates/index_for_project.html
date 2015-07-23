@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+{% extends "baseindex.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<html lang="en">
+
+
+          {% block content %}
+    {{ wtf.form_errors(pform) }}
+     <script>
+@media screen and (min-width: 768px) {
+    .modal-dialog {
+        left: 50%;
+        right: auto;
+        width: 624px;
+    }
+}
+
+.modal-dialog{
+position: absolute;
+left: 50%;
+//now you must set a margin left under zero - value is a half width your window
+margin-left: -312px;
+// this same situation is with height - example
+height: 500px;
+top: 50%;
+margin-top: -250px;
+} 
+
+</script>
+
+    
+         
+<!-- Modal -->
+          </div>
+           <ol class="breadcrumb">
+          
+  <li class="active">All Projects</li>
+</ol></div>
+<div class="col-md-12">
+<div class="well">
+    
+
+
+       <h1>AC Projects</h1> This is your access page to all project objectives 
+             <p>Click through to a project's objectives <br>
+
+    <a href="#" class="btn btn-lg btn-default "
+       data-toggle="modal"
+       data-target="#basicModal1">More Information</a> 
+       <div class="modal fade" id="basicModal1" tabindex="-1" role="dialog" aria-labelledby="basicModal1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Project Management Terms</h4>
+                </div>
+                <div class="modal-body">
+                             <h2><p>Create a <strong>Project</strong></p><p> with measureable <red><strong>Objectives</strong></red> </p><p>inovative  <green><strong> Strategies</strong></green> </p><p>and actionable <blue><strong> Tasks</strong></blue> </p></h2><br>
+                             <p>Relationship between Project, Objectives, Strategies and Tasks</p><br>
+                        <div class="row">
+            <div class="col-md-3"><strong>Project</strong></div>
+              <div class="col-md-3"><strong>Objectives</strong></div>
+              <div class="col-md-3"><strong>Strategies</strong></div>
+                <div class="col-md-3"><strong>Tasks</strong></div></div>
+                                        <div class="row">
+            <div class="col-md-3">Project 1</div>
+              <div class="col-md-3">Objective 1</div>
+              <div class="col-md-3">Strategy 1</div>
+                <div class="col-md-3">Task1</div></div>
+                                                        <div class="row">
+            <div class="col-md-3"></div>
+              <div class="col-md-3"></div>
+              <div class="col-md-3"></div>
+                <div class="col-md-3">Task2</div></div>
+                                        <div class="row">
+            <div class="col-md-3"></div>
+              <div class="col-md-3"></div>
+              <div class="col-md-3">Strategy 2</div>
+                <div class="col-md-3">Task1</div></div>
+                                                        <div class="row">
+            <div class="col-md-3"></div>
+              <div class="col-md-3"></div>
+              <div class="col-md-3"></div>
+                <div class="col-md-3">Task2</div></div>
+                                        <div class="row">
+            <div class="col-md-3"></div>
+              <div class="col-md-3">Objective 2</div>
+              <div class="col-md-3">Strategy 1</div>
+                <div class="col-md-3">Task1</div></div>
+                                                        <div class="row">
+            <div class="col-md-3"></div>
+              <div class="col-md-3"></div>
+              <div class="col-md-3"></div>
+                <div class="col-md-3">Task2</div></div>
+                                        <div class="row">                
+
+       
+               <p>Your <strong>Project</strong> has multiple <strong>Objectives</strong>.</p>
+               <p> <strong>Objectives</strong> are liniked to measureable data points.</p>
+               <p> Your <strong>Objectives</strong> have <strong> Strategies</strong>  to map your vision.</p>
+               <p> Your <strong>Strategies</strong> have <strong> Tasks</strong>  that specifically describe actions.</p>
+               <p> Your <strong>Tasks</strong> get completed!</p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+    </div>
+          </div>
+        </div></div></div></div></div></div></div>
+      </div>
+    </div></p>
+       {% for message in get_flashed_messages() %}
+                       <span style="color: red;">[{{ message }}]</span>
+{% endfor %}
+       </div></div></div>
+</div>
+      <div class="row">
+            <div class="col-md-9">
+
+
+    <a href="#" class="btn btn-lg btn-success pull-right"
+       data-toggle="modal"
+       data-target="#basicModal">Add Project</a> 
+       <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Projects</h4>
+                </div>
+                <div class="modal-body">
+                    <h3><div class="well">
+
+          <div class="row">
+            <div class="col-md-12">
+                <div id="form-section">
+        </div>
+             <b> <p> <h2>Add a new Project</h2> </p>  
+      <form class="form form-horiztonal" method="post" role="pform">
+      <div class="form-group ">
+        {{ pform.hidden_tag() }}
+    {{ wtf.form_errors(pform) }}
+
+
+                                <label class="control-label" for="project">
+
+                                    Project *
+
+                                </label>
+                                <input id="project" class="form-control" type="text"  name="project" min="3" max="200"  required></input>
+                            </div>
+                         
+                                <label class="control-label" for="projectleader">
+
+                                    Project Leader *(required)
+
+                                </label>
+                                <input id="projectleader" class="form-control" type="text" value="" name="projectleader"  required></input>
+                           {{ wtf.form_field(pform.submit) }} 
+
+                                </p>
+                            </div>
+    <br>
+              </div></p></form></b><br></h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+    </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ {{ wtf.form_errors(pform) }}
+  {% for item in zipit %} 
+      <!-- Example row of columns -->
+      <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+         
+        </div>
+      </div>
+
+      <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+        </div> </div></div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+
+ <h3>{{item[0].name}}  <br></h3><h4>{{item[0].projectleader}}<br>  </h4>Tasks complete {% if item[1][3] ==0 or item[1][1] ==0 %} 0% {% else %} {{'%0.1f'| format((item[1][1]/item[1][3])*100|float)}}% {%endif%}
+</h3>
+    <div class="row">
+        <div class="col-md-3">
+        <div class="progress">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: {% if item[1][1] ==0 or item[1][3] ==0 %} 0% {% else %} {{'%0.1f'| format((item[1][1]/item[1][3])*100|float)}}% {%endif%};">
+ {% if item[1][3] ==0 or item[1][1] ==0 %} 0% {% else %} {{'%0.1f'| format((item[1][1]/item[1][3])*100|float)}}% {%endif%}
+  </div>
+</div></div>
+            </div></div>
+            <div class="panel-body">
+             <p><a href="{{ url_for('project_outline', name = item[0].id) }}" class="btn btn-primary" role="button">Objectives</a></p> 
+            </div>
+          </div></p></div>
+            {% endfor %}
+<br>
+</div>
+
+          {% endblock %}
+    
+          
+
+  </body>
+</html>
+
+

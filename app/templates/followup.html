@@ -1,0 +1,50 @@
+<!-- extend base layout -->
+{% extends "baser.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block content %}
+ <div class="container">
+   <div class="jumbotron">
+   <div class="alert alert-warning" role="alert">
+  <h1>Thank you for submitting.</h1>
+  <h2>We will respond to {{email}}</h2><br>
+<br></p>
+</div>
+
+ <div class="row">
+ <div class="alert alert-info" role="alert">
+ <p>  <h4>{{g.user.name}}'s Requests</h4>
+        <div class="col-md-1">
+        </div><div class="col-md-12">
+        {% if requestlist==[] %} No requests {% else %} 
+    <table class="table table-striped" >
+  <!--          <table id="myTable" class="tablesorter"> -->
+<thead> 
+         <h3><strong><tr><th>Job Title</th>
+         <th>Request Date</th>
+         <th>Deadline</th>
+           <th></th>
+         
+         <th></th></tr></strong></h3>
+         </thead> 
+<tbody> 
+  <ol type="1">
+
+          {% for field in requestlist %}
+           {% if "Chet" in g.user.name %}  <tr><td><li><a href="{{ url_for('view_request', id = field.id) }}" >{{field.jobTitle}} </a>  </td> {% else %} 
+            <tr><td><li>{{field.jobTitle}}  </td>{% endif %}
+          <td>{{field.requestDate.isoformat().split('T')[0]}} </td>
+          <td>{{field.deadlinedate.isoformat().split('T')[0]}}</td>
+
+       <td><a href="{{ url_for('edit_request', id = field.id) }}" ><span class="glyphicon glyphicon-pencil"></span> Add a note </a> </td>
+       </tr>  </li>
+          {% endfor %}</ol></tbody> </table> {% endif %}
+</div>
+ </div></div></div>
+    </div></div>
+</div></div>
+
+
+{% endblock %}
+

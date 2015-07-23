@@ -1,0 +1,15 @@
+<!-- extend base layout -->
+{% extends "baser.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+          
+  <h1>Hi {{name}} </h1>
+    <div class="row">     <div class='col-sm-2'></div>
+         <div class='col-sm-8'><div class="well">
+        
+  <form method=post >   
+  {{ wtf.quick_form(form) }} </form>
+   </div>
+   <div class="row">     </div></div></div>    
+{% endblock %}

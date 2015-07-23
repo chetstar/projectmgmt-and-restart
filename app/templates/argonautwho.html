@@ -1,0 +1,46 @@
+{% extends "baseindex.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+          {% block content %}
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+            <div class="well">
+        <h1>Email who? </h1>
+              <div class="row">
+        <div class="col-md-9 ">
+  
+        <h3> Runing your file is resource intensive. <br>If possible, run your file on your machine first <br>Then, only select send to emanio on this menu.
+         <div class="row">
+        <div class="col-md-9 ">
+        <br>Email you get should have <br>"push" in the file name for dev and <br>"pushp" for production<br></h3><br>
+         <div class="row">
+        <div class="col-md-9 ">
+              <div class="col-md-5 ">
+            <form class="form form-horizontal" method="post" role="form">
+      <div class="form-group "></div>
+        {{ form.hidden_tag() }}
+    {{ wtf.form_errors(form) }}
+    {{ wtf.form_field(form.pushfile) }}<br>
+         {{ wtf.form_field(form.who) }}<br>
+          {{ wtf.form_field(form.where) }}<br>
+                {{ wtf.form_field(form.submit) }}  </div></form>
+        </div></div></div></div></div></div></div>
+          {% endblock %}
+        {% block footer %}
+        <footer class="footer">
+            <p>&copy; AC chet</p>
+        </footer>
+        {% endblock %}
+          
+
+  </body>
+</html>
+
+
+
+<!-- /.col-sm-4 -->

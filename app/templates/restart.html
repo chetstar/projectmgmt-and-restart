@@ -1,0 +1,83 @@
+{% extends "baseindex.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+          {% block content %}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{
+  url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+
+
+
+
+              <div class="col-md-12">
+           <div class="well well-lg">
+            <div class="container">
+                 <div class="row">
+                  <h1>Restart a Computer or Server</h1>
+  <div class="alert alert-success " role="alert"> 
+       
+        <p><h4>Check Status for 'Yes' or 'Fail' in first sentence. </p> 
+        <p>The rest of Status is helpful info for your admin.</p>
+        <p>It may require multimple attempts for success.</h4></p>
+<br>
+<div class="col-md-6">
+<div class="well well-lg">
+<h3>
+<p>Device Key</p></h3><h4>
+BHCSdbv03 - Emanio Dev Database  <br>   
+BHCSdbv02 - Emanio Production Database<br>  
+BHCSStat1 - Argonaut SPSS Engine<br>
+WINspssV4 - Argonaut Interface and Project MGMT<br>
+WINspssV3 - Production Results Interface<br></h4> 
+
+   </div>  <div class="alert alert-warning">
+    <strong>Status:</strong> <h3><font color="red"><span class="result"><font color="black"><h4>System is Idle.</h4></font></span></font></div><br></div>
+</div>
+  {% for item in restartFiles %} 
+  {% if 'Backup' not in item and 'dummy' not in item %}
+  <div class="col-md-3">
+<div class="alert alert-success" role="alert">
+<p><a href=# name = a class="calculate" id="{{ item }}">{{ item|replace(".bat", "") }}</a>
+</div></div>
+ {%endif%} {%endfor%}
+ <script type=text/javascript>
+  $(function() {
+    $('a.calculate').bind('click', function() {
+       var item = $(this).attr('id');
+ $("span.result").text("processing... please wait...");
+      $.getJSON($SCRIPT_ROOT + '/restartajax/'+item, {
+      }, function(data) {
+
+        $("span.result").text(data.result);
+      });
+      return false;
+    });
+  });
+</script>
+      </div>
+    </div>
+</div>
+
+    
+        <!--  <a class="btn btn-primary" href="/refreshsyntax"><i class="icon-refresh icon-white"></i> Refresh your syntax file list</a> -->
+
+</div></div>
+
+  {% endblock %}
+
+
+
+
+
+
+
+<!-- /.col-sm-4 -->

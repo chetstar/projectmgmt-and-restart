@@ -1,0 +1,34 @@
+{% extends "baseindex.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+          {% block content %}
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+            <div class="container">
+        <h1>Graphs</h1>
+        <p>Discover the percent of tasks complete and how many tasks met deadlines and stuff.</p>
+        <p><a href="/graphs/stats" class="btn btn-primary btn-lg" role="button">Learn more »</a></p>
+      </div>
+    </div>
+
+          {% endblock %}
+        </div>
+        <hr>
+        {% block footer %}
+        <footer class="footer">
+            <p>&copy; AC chet</p>
+        </footer>
+        {% endblock %}
+          
+
+  </body>
+</html>
+
+
+
+<!-- /.col-sm-4 -->

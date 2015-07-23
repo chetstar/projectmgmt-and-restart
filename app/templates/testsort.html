@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% block head %}
+
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+             <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sort.css') }}">
+
+                    <script src="http://code.jquery.com/jquery-latest.js"></script>
+                       
+              {% endblock %}
+{% block content %}
+<!doctype html>
+<script type=text/javascript
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type=text/javascript>
+  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery UI Sortable - Drop placeholder</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<style>
+.connectedSortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+.connectedSortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1em; height: 10em; }
+html>body .connectedSortable li { height: 1.5em; line-height: 10em; }
+.connectedSortable { height: 10em; line-height: 10em; font-size: 10em;}
+</style>
+<script>
+$(function() {
+$( "#sortable" ).sortable({
+placeholder: "ui-state-default"
+});
+$( "#sortable" ).disableSelection();
+});
+</script>
+
+<script type=text/javascript>
+  $(function() {
+    $('a#calculate').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/_order', {
+      }, function(data) {
+        $("#result").text(data.result);
+      });
+      return false;
+    });
+  });
+</script>
+
+</head>
+<body>
+<ul id="sortable">
+{% for item in q_sum %}
+    <li id="item-{{ item }}" class="ui-state-default">{{ item }}</li>
+{% endfor %}
+</ul>
+
+<script>
+var $sortables = $("#sortable").sortable({
+  stop: function() {
+    var sortedItems = $sortables.sortable("toArray");
+    console.log(sortedItems);
+    alert(sortedItems);
+$.getJSON($SCRIPT_ROOT + '/_order', {
+      }, function(data) {
+        $("#result").text(data.result);
+      });
+
+  },
+});
+</script>
+
+   <span id=result>x</span>
+<p><a href=# id=calculate>calculate server side</a>
+
+</body>
+</html>
+
+            </div>
+        </div>
+    </div>
+   
+    </div>
+  </div>
+</div>
+
+
+ {% endblock %}
+

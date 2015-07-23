@@ -1,0 +1,155 @@
+{% extends "baseindex.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/typeahead.css') }}">
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+     <script src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/typeahead.bundle.js"></script> 
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+
+<html lang="en">
+
+
+
+<br><br><br><br>
+    
+          <dif id="#">
+          <ol class="breadcrumb">
+                      <li><a href="/start">All Projects</a></li>
+  <li><a href="{{ url_for('project_outline', name = project.id) }}">Objectives</a></li>
+    <li><a href="{{ url_for('strategy_outline', name = project.id, goal=pgoal.id) }}">Strategies</a></li>
+  <li class="active">Tasks</li>
+</ol></div>
+
+
+
+<div class="well">
+      <div class="row">
+        <div class="col-md-12 ">
+
+<div class="list-group">
+     <div class="alert alert-info">Project: {{ project.name }}</div>
+      
+        <div class="col-md-12 ">
+        <div class="alert alert-warning"> Objective: {{ pgoal.goal }}</div>
+            
+        <div class="col-md-12 ">
+        <div class="alert alert-danger">   Strategy: {{ pstrat.strategy }}</div>
+        {% for message in get_flashed_messages() %}
+                       <span style="color: red;">[{{ message }}]</span>
+{% endfor %}
+      </div></p></div></div></div></p></div></div></div>
+
+
+
+
+
+
+      
+              {% endblock %}
+              {% block content %}
+
+
+        <div class="row">
+        <div class="col-md-9">
+        
+<a href="{{ url_for('task_sort', strategy=pstrat.id) }}" class="btn btn-lg pull-right"><span class="glyphicon glyphicon-sort-by-attributes">
+
+<a href="#" class="btn btn-lg btn-success pull-right"
+   data-toggle="modal"
+   data-target="#basicModal">Add Task</a>
+   <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h4 class="modal-title" id="myModalLabel">   <b>Add task for <p>{{ pstrat.strategy }}</p></h4>
+            </div>
+            <div class="modal-body">
+                <h3><div class="well">
+      <div class="row">
+        <div class="col-md-12 ">
+
+<div class="well">
+      <div class="row">
+        <div class="col-md-12 ">
+     
+  <form class="form form-horizontal" method="post" role="tform">
+  {{ tform.hidden_tag() }}
+    {{ wtf.form_errors(tform) }}
+        {{ wtf.form_field(tform.task) }}
+   
+           <div id="the-basics">
+<input class="typeahead" type="text" placeholder="Staff" id='staff' name='staff' for="staff">
+</div>
+          <script type="text/javascript" src="/static/js/states.js"></script> 
+            </div>
+                <label class="control-label" for="deadline">
+                            Deadline (mm/dd/yyyy)
+                        </label>
+<input data-provide="datepicker" name="deadline" format="mm/dd/yyyy"  required>
+  <label class="control-label" for="project">
+
+                          
+                     {{ wtf.form_field(tform.complete) }}
+          Note *
+
+                                </label>
+                                <input id="note" class="form-control" type="text"  name="note" maxlength="300"  ></input>
+                         {{ wtf.form_field(tform.submit) }}    </div>
+          </div></p></div></div>
+</form></b>
+            <div class="modal-footer">
+              </div></div></div></div>
+               
+  </div></div>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div class="col-md-12 ">
+
+
+     
+      <div class="row">
+        <div class="col-md-1">
+        </div><div class="col-md-10">
+    <table class="table table-striped" >
+  <!--          <table id="myTable" class="tablesorter"> -->
+<thead> 
+         <h3><strong><tr><th>Task</th>
+         <th>Note</th>
+         <th>Complete</th>
+         <th>Staff</th>
+         <th>Deadline</th>
+         <th>Complete Date</th>
+         <th></th></tr></strong></h3>
+         </thead> 
+<tbody> 
+  <ol type="1">
+          {% for ptask in T %}
+          <tr><td><li>{{ ptask.task }}</td>
+          <td>{% if ptask.note %} {{ptask.note}} {% else %} N/A {% endif %}</td>
+          <td>{% if ptask.complete ==True %}  <span class="glyphicon glyphicon-ok"></span> {% else %} <span class="glyphicon glyphicon-thumbs-down"></span> {% endif %}</td>
+          <td>{% if ptask.staff %} {{ptask.staff}} {% else %} N/A {% endif %}</td>
+                  <td>{% if ptask.deadline | reverse ==1%}  <font color="red">{{ ptask.deadline.strftime('%b %d %Y' )}}</font> {% else %} {{ ptask.deadline.strftime('%b %d %Y ')}} {% endif %}</td>
+          <td>{% if ptask.complete ==True %}  {{ptask.completeDate.strftime('%b %d %Y')}} {% endif %}</i></td>
+          <td><a href="{{ url_for('edit_task', name = project.id,goal=pgoal.id,strategy=pstrat.id,task=ptask.id) }}" class="btn pull-right"><span class="glyphicon glyphicon-pencil"></span> edit </a> </td></tr></li>
+          {% endfor %}</ol></tbody> </table>
+
+ </div></div></div>
+    </div></div></div><br><br>
+
+
+
+          {% endblock %}
+
+          
