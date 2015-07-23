@@ -8,14 +8,13 @@ Flask-WTF==0.9.5
 Jinja2==2.7.2
 Mako==0.9.1
 MarkupSafe==0.21
-SQLAlchemy==0.8.4
 WTForms==1.0.5
 Werkzeug==0.9.4
 alembic==0.6.5
-dominate==2.1.12
 html5lib==0.999
 itsdangerous==0.24
-psycopg2==2.6.1
 python-dateutil==2.3
 six==1.9.0
+sqlalchemy==0.8.4
 virtualenv==1.11.4
+

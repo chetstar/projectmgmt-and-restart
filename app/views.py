@@ -14,7 +14,7 @@ from email.mime.text import MIMEText
 import subprocess
 import socket
 from threading import Thread
-import ldap
+#import ldap
 from flask import render_template, flash, redirect,Flask,Response,request,url_for, g,session,jsonify
 
 @app.route('/restartajaxtest')
@@ -337,29 +337,29 @@ def restart():
 
 # from flask import request
 
-@app.route('/navstart', methods=['GET','POST'])
-def navstart():
-    aform=ldapA()
-    email=None
-    AS=None
-    if aform.validate_on_submit():
-        import sys
-        import ldap
-        l = ldap.initialize("ldap://10.129.18.101")
-        email=None
-        try:
-            l.simple_bind_s("program\%s" % aform.username.data,aform.password.data)
-            print "Authentification Successful"
-            r=l.search_s('cn=Users,dc=BHCS,dc=Internal',ldap.SCOPE_SUBTREE,'(sAMAccountName=*%s*)' % aform.username.data,['mail'])
-            email=r[0][1]['mail']
-            AS=1
-            print email
-        except:
-            print 'Failed'
-            AS=0
-        print email
-        # return render_template("navStart.html",aform=aform,email=email,AS=AS)
-    return render_template("navStart.html",aform=aform,email=email,AS=AS)
+# @app.route('/navstart', methods=['GET','POST'])
+# def navstart():
+#     aform=ldapA()
+#     email=None
+#     AS=None
+#     if aform.validate_on_submit():
+#         import sys
+#         import ldap
+#         l = ldap.initialize("ldap://10.129.18.101")
+#         email=None
+#         try:
+#             l.simple_bind_s("program\%s" % aform.username.data,aform.password.data)
+#             print "Authentification Successful"
+#             r=l.search_s('cn=Users,dc=BHCS,dc=Internal',ldap.SCOPE_SUBTREE,'(sAMAccountName=*%s*)' % aform.username.data,['mail'])
+#             email=r[0][1]['mail']
+#             AS=1
+#             print email
+#         except:
+#             print 'Failed'
+#             AS=0
+#         print email
+#         # return render_template("navStart.html",aform=aform,email=email,AS=AS)
+#     return render_template("navStart.html",aform=aform,email=email,AS=AS)
 
 
 @app.route('/sendemail', methods=['GET', 'POST'])
