@@ -199,6 +199,7 @@ def project_outline(name):
     func.sum(case([(Tasks.complete == True, 1)], else_=0)).label("x"),
     func.sum(case([(and_(Tasks.deadline != None, Tasks.completeDate != None, Tasks.deadline > Tasks.completeDate), 1)], else_=0)).label("y"),
     func.count(Tasks.id).label("total"),
+    Goals.goal.label("Goal_name"),
     ).join(Goals, Projects.goals).outerjoin(Strategies, Goals.strategies).outerjoin(Tasks, Strategies.tasks).group_by(Projects.id,Goals.id).filter(Projects.id == name) )
     if request.method == 'POST' and  gform.submit.data:
         if gform.validate() == False:
@@ -218,7 +219,7 @@ def project_outline(name):
         return redirect(url_for('project_outline',name=name))            
     # if request.method == 'POST' and  delete_form.submit.data:
     #     delete_row=
-    return render_template("index_for_goal.html",project=project,G=G,gform=gform,P=P,zipit=zip(G,q_sum),delete_form=delete_form)
+    return render_template("index_for_goal.html",project=project,G=G,gform=gform,P=P,zipit=zip(G,q_sum),q_sum=q_sum,delete_form=delete_form)
 
 @app.route('/ProjectTree/<name>/<goal>', methods=['GET','POST'])
 def strategy_outline(name,goal):
