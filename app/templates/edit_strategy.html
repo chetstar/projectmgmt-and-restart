@@ -52,8 +52,7 @@
                       <li><a href="/start">All Projects</a></li>
   <li><a href="{{ url_for('project_outline', name = project.id) }}">Objectives</a></li>
     <li><a href="{{ url_for('strategy_outline', name = project.id, goal=pgoal.id) }}">Strategies</a></li>
-     <li><a href="{{ url_for('task_outline', name = project.id, goal=pgoal.id,strategy=pstrat.id) }}">Tasks</a></li>
-  <li class="active">edit Tasks</li>
+  <li class="active">edit Strategy</li>
 </ol>
 
 
@@ -67,8 +66,6 @@
         <div class="col-md-12 ">
         <div class="alert alert-warning"> Objective: {{ pgoal.goal }}</div>
             
-        <div class="col-md-12 ">
-        <div class="alert alert-danger">   Strategy: {{ pstrat.strategy }}</div>
       
      </div></div></div></div></div></div>
 
@@ -79,30 +76,9 @@
   <form class="inline" method="post" role="form" format="mm/dd/yyyy">
 {{ form.hidden_tag() }}
 {{ wtf.form_errors(form) }}
-{{ wtf.form_field(form.task) }}
+{{ wtf.form_field(form.strategy) }}
 
-  <div id="the-basics">
-<input class="typeahead" type="text"  id='staff' name='staff' value="{{ form.staff.data }}" for="staff">
-</div>
-   <script type="text/javascript" src="/static/js/states.js"></script> 
-</div>
- <div class="col-md-11 ">
-  <div class="col-md-1 "></div>
-  <div class="col-md-10 ">
-  <label class="control-label" for="deadline">
-
-                            Deadline (mm/dd/yyyy)
-
-                        </label>
-<input data-provide="datepicker" data-date-format="mm/dd/yyyy" id="deadline"  type="text" value="{{ form.deadline.data }}" name="deadline" required></input>
-<br><br>
-{{ wtf.form_field(form.complete) }}<br><br>
-  <label class="control-label" for="note">
-Note
-                        </label>
-    <input id="note" class="form-control" type="text"  name="note"  value="{{ form.note.data }}" maxlength="300"  ></input><br><br>
-   <div class="row">
-      <div class="col-md-1 ">
+  
 {{ wtf.form_field(form.submit) }}</form> </div> 
   <form class="horizontal" method="post" role="delete_form"><div class="col-md-1 "> {{ delete_form.hidden_tag() }}<input class="btn btn-danger" id="submit" name="submit" value="Delete" type="submit">
 </form>
