@@ -48,7 +48,7 @@ coverage.xml
 *.mo
 *.pot
 db_repository*
-
+config.py
 # Django stuff:
 *.log
 
