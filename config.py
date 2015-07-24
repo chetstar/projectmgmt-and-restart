@@ -10,7 +10,8 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 # from sqlalchemy import create_engine
 # SQLALCHEMY_DATABASE_URI = create_engine("mssql+pyodbc://dashboarddatadev", encoding='windows-1255', convert_unicode=True)
-SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:NBP@bhcsweb3/postgres'
+SQLALCHEMY_DATABASE_URI = 'postgresql://chet@localhost/postgres'
+#'postgresql://postgres:NBP@bhcsweb3/postgres'
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 
 

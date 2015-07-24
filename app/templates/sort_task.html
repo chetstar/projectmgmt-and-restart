@@ -132,7 +132,7 @@ $( "#sortable" ).disableSelection();
 <body><br>
 <ul id="sortable">
 {% for item in q_sum %}
-    <li id="{{ item.id }}" class="connectedSortable" style="width:2000px;font-size: 1.2em; height: 2em; "><strong>Deadline:</strong> {{item.deadline}} <strong>    Task:</strong> {{ item.task }}</li>
+    <li id="{{ item.id }}" class="connectedSortable" style="width:2000px;font-size: 1.2em; height: 2em; "><strong>Deadline:</strong> {{item.deadline.strftime('%b %d %Y ')}}<strong>    Task:</strong> {{ item.task }}</li>
 {% endfor %}
 </ul>
 <br>
