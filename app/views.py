@@ -237,7 +237,9 @@ def strategy_outline(name,goal):
     Strategies.id.label("strategy_id"),
     Goals.id.label("goal_id"),
     Strategies.strategy.label("strategy_name"),
+    Strategies.order.label("strategy_order"),
     ).join(Goals, Projects.goals).outerjoin(Strategies, Goals.strategies).outerjoin(Tasks, Strategies.tasks).group_by(Projects.id,Goals.id,Strategies.id).filter(Goals.id == goal) )
+    q_sum= sorted(q_sum, key=lambda tup: tup[7])
     if request.method == 'POST' and sform.submit.data:
         print sform.validate()
         if sform.validate() == False:
