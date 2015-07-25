@@ -1,5 +1,5 @@
 from app import app,models, db
-from forms import goal_form, strategy_form, project_form, task_form,DeleteRow_form,ldapA,LoginForm, Request, Which,Staff
+from forms import goal_form, strategy_form, project_form, task_form,DeleteRow_form,ldapA,LoginForm
 import datetime
 from sqlalchemy.orm.attributes import get_history
 from werkzeug import secure_filename
@@ -325,6 +325,24 @@ def outline(name):
     P=models.Projects.query.all()
     project=models.Projects.query.filter_by(id=name).first() 
     return render_template("index_outline_all.html",P=P,project=project)
+
+@app.route('/editobjective/<name>/<goal>', methods=['GET', 'POST'])
+def edit_objective(name,goal):
+    P=models.Projects.query.all()
+    project=models.Projects.query.filter_by(id=name).first() 
+    pgoal=models.Goals.query.filter_by(id=goal).first() 
+    delete_form=DeleteRow_form()
+    form = goal_form(obj=pgoal)
+    form.populate_obj(pgoal)
+    # tform=task_form(request.values)
+    if request.method == 'POST' and form.validate_on_submit():
+        db.session.commit()
+        return redirect(url_for('project_outline',name=name))
+    if delete_form.validate_on_submit():
+        db.session.delete(pstrat)
+        db.session.commit()
+        return redirect(url_for('project_outline',name=name))
+    return render_template('edit_objective.html',form=form,project=project,pgoal=pgoal,delete_form=delete_form,P=P)
 
 @app.route('/editStrategy/<name>/<goal>/<strategy>', methods=['GET', 'POST'])
 def edit_strategy(name,goal,strategy):

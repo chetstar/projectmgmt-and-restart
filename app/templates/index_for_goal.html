@@ -83,8 +83,8 @@
           <div class="panel panel-default">
             <div class="panel-heading">
 
- <h3><b>Objective:</b> {{item[]}}  <br> </h3>Tasks complete {% if item[4] ==0 or item[2] ==0 %} 0%  {%endif%}
-
+ <h3><b>Objective:</b> {{item[5]}}  <br> </h3>Tasks complete {% if item[4] ==0 or item[2] ==0 %} 0%  {%endif%}
+ <a href="{{ url_for('edit_objective', name = project.id,goal=item[1]) }}" class="btn pull-right"><span class="glyphicon glyphicon-pencil"></span> edit </a> 
 </h3>
     <div class="row">
         <div class="col-md-6">

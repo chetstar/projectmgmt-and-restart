@@ -1,0 +1,87 @@
+{% extends "baseindex.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block head %}
+<!DOCTYPE html>
+
+<html lang="en">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/typeahead.css') }}">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+             
+         <script type="text/javascript" src="/static/js/typeahead.bundle.js"></script> 
+               <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+              {% endblock %}
+ {% block navbar %}
+    <nav class="navbar navbar-default navbar-top" role="navigation">
+  <div class="container">
+        <button class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">AC Project Managment Center</a>
+        <div class="nav-collapse">
+        </div></div>
+               {% endblock %}
+          {% block navbar_right %}
+          <ul class="nav navbar-nav pull-right">
+
+          </ul>
+
+            <ul class="nav navbar-nav">
+           <li><a href="http://CoveContext/RunReport.i4?reportUUID=cd521124-ac30-4c92-914e-23d9f793e0d2&primaryOrg=1&clientOrg=1">Reports</a></li> 
+              <li><a href="/graphs">Stats</a></li>
+                <li><a href="/send_me_a_file">Data Portal</a></li>          
+                   <li><a href="{{ url_for('outline', name = project.id) }}">Outline for {{ project.name}}</a></li>
+
+                </ul>
+              </li>
+            </ul>
+            </div><!--/.nav-collapse -->
+      </div></nav>
+<br><br><br>
+     
+
+
+    {% endblock %}
+          {% block content %}
+          <ol class="breadcrumb">
+                      <li><a href="/start">All Projects</a></li>
+  <li><a href="{{ url_for('project_outline', name = project.id) }}">Objectives</a></li>
+  <li class="active">Edit Objective</li>
+</ol>
+
+
+<div class="well">
+      <div class="row">
+        <div class="col-md-12 ">
+
+<div class="list-group">
+     <div class="alert alert-info">Project: {{ project.name }}</div>
+      
+    
+            
+      
+     </div></div></div></div></div></div>
+
+             <div class="row">
+        <div class="col-md-11 ">
+  <div class="col-md-1 "></div>
+  <div class="col-md-10 ">
+  <form class="inline" method="post" role="form" format="mm/dd/yyyy">
+{{ form.hidden_tag() }}
+{{ wtf.form_errors(form) }}
+{{ wtf.form_field(form.goal) }}
+
+  
+{{ wtf.form_field(form.submit) }}</form> </div> 
+  <form class="horizontal" method="post" role="delete_form"><div class="col-md-1 "> {{ delete_form.hidden_tag() }}<input class="btn btn-danger" id="submit" name="submit" value="Delete" type="submit">
+</form>
+
+</div></p></div></div></div></html>
+          {% endblock %}
+
+          
