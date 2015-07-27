@@ -62,10 +62,12 @@ class project_form(Form):
 class goal_form(Form):
     goal = TextAreaField('Goal', [validators.Required(),validators.Length(min=2, max=200,message='not the right length')])
     submit=SubmitField('Add Objective')
+    submitUpdate=SubmitField('Update')
 
 class strategy_form(Form):
     strategy = TextAreaField('Strategy', [validators.Required(),validators.Length(min=2, max=200,message='not the right length')])
     submit=SubmitField('Add Strategy')
+    submitUpdate=SubmitField('Update')
 
 class task_form(Form):
     task = TextAreaField('Task', [validators.Required(),validators.Length(min=2, max=200,message='not the right length')])

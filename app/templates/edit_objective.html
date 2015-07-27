@@ -76,8 +76,10 @@
 {{ wtf.form_errors(form) }}
 {{ wtf.form_field(form.goal) }}
 
-  
-{{ wtf.form_field(form.submit) }}</form> </div> 
+  <a href="{{ url_for('project_outline', name = project.id) }}" class="btn btn-primary" role="button">Back</a>
+{{ wtf.form_field(form.submitUpdate) }}</form> </div> 
+
+
   <form class="horizontal" method="post" role="delete_form"><div class="col-md-1 "> {{ delete_form.hidden_tag() }}<input class="btn btn-danger" id="submit" name="submit" value="Delete" type="submit">
 </form>
 
