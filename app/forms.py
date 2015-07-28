@@ -74,6 +74,7 @@ class task_form(Form):
     staff = TextField('Staff Assigned')
     complete = BooleanField('Is the task Complete?')
     deadline =DateField( 'Deadline (mm/dd/yyyy)',  format='%m/%d/%Y',validators = [validators.Required()])
+    completeDate =DateField( 'Complete Date (mm/dd/yyyy)',  format='%m/%d/%Y', validators=[validators.Optional()])
     note = TextAreaField('Note',)
     Order = IntegerField('Order')
     submit=SubmitField('Submit')

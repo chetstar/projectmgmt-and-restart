@@ -87,6 +87,7 @@
    <script type="text/javascript" src="/static/js/states.js"></script> 
 </div>
  <div class="col-md-11 ">
+
   <div class="col-md-1 "></div>
   <div class="col-md-10 ">
   <label class="control-label" for="deadline">
@@ -96,7 +97,17 @@
                         </label>
 <input data-provide="datepicker" data-date-format="mm/dd/yyyy" id="deadline"  type="text" value="{{ form.deadline.data }}" name="deadline" required></input>
 <br><br>
-{{ wtf.form_field(form.complete) }}<br><br>
+     <div class="row">
+     <div class="col-md-1 "></div>
+  <div class="col-md-10 ">
+  <label class="control-label" for="completeDate">
+
+                            Complete Date (mm/dd/yyyy)
+
+                        </label>
+<input data-provide="datepicker" data-date-format="mm/dd/yyyy" id="completeDate"  type="text" value="{{ form.completeDate.data }}" name="completeDate" ></input>
+<br><br>
+
   <label class="control-label" for="note">
 Note
                         </label>

@@ -20,7 +20,7 @@ from flask import render_template, flash, redirect,Flask,Response,request,url_fo
 @app.route('/restartajaxtest')
 def restartajaxtest():
     computer = request.args.get('a')
-    import pdb;pdb.set_trace()
+    # import pdb;pdb.set_trace()
     def runJob(computer):
         try:
             print computer
@@ -240,6 +240,7 @@ def strategy_outline(name,goal):
     Strategies.order.label("strategy_order"),
     ).join(Goals, Projects.goals).outerjoin(Strategies, Goals.strategies).outerjoin(Tasks, Strategies.tasks).group_by(Projects.id,Goals.id,Strategies.id).filter(Goals.id == goal) )
     q_sum= sorted(q_sum, key=lambda tup: tup[7])
+    # import pdb;pdb.set_trace()
     if request.method == 'POST' and sform.submit.data:
         print sform.validate()
         if sform.validate() == False:
@@ -298,6 +299,7 @@ def task_outline(name,goal,strategy):
     # T=(pstrat.tasks.order_by(pstrat.tasks.Order)).all()
     T=pstrat.tasks.all()
     tform=task_form(request.values)
+
     if request.method == 'POST':
         if tform.validate() == False:
             flash('Failed Field validation.')
@@ -314,6 +316,25 @@ def task_outline(name,goal,strategy):
             db.session.commit()
             return redirect(url_for('task_outline',name=name,goal=goal,strategy=strategy))
     return render_template("index_for_task.html",project=project,T=T,tform=tform,pstrat=pstrat,pgoal=pgoal,P=P)
+
+    # import pdb;pdb.set_trace()
+    # if request.method == 'POST':
+    #     if tform.validate() == False:
+    #         flash('Failed Field validation.')
+    #         flash_errors(tform)
+    #         return redirect(url_for('task_outline',name=name,goal=goal,strategy=strategy))
+    #     else:
+    #         if tform.completeDate:
+    #             p=models.Tasks(task=tform.task.data,strat=pstrat,note = tform.note.data,staff=tform.staff.data,deadline=tform.deadline.data,
+    #                 complete=True,created=datetime.datetime.utcnow(), completeDate=tform.completeDate.data)
+    #         else:
+    #             p=models.Tasks(task=tform.task.data,strat=pstrat,note = tform.note.data,staff=tform.staff.data,deadline=tform.deadline.data,
+    #                 complete=False,created=datetime.datetime.utcnow())
+    #         db.session.add(p)
+    #         # import pdb;pdb.set_trace()
+    #         db.session.commit()
+    #         return redirect(url_for('task_outline',name=name,goal=goal,strategy=strategy))
+    # return render_template("index_for_task.html",project=project,T=T,tform=tform,pstrat=pstrat,pgoal=pgoal,P=P)
 
 @app.route('/outlineindex')
 def outline_index():
@@ -373,29 +394,38 @@ def edit_task(name,goal,strategy,task):
     ptask=models.Tasks.query.filter_by(id=task).first()
     delete_form=DeleteRow_form()
     form = task_form(obj=ptask)
-    form.populate_obj(ptask)
-    form.deadline.data = ptask.deadline.strftime("%m/%d/%Y")
-    tform=task_form(request.values)
+    # import pdb;pdb.set_trace()
     if request.method == 'POST' and form.validate_on_submit():
+        if form.completeDate.data:
+            form.complete.data=True
+        else:
+            form.complete.data=False    
         #if it changed from True to false, set complete date to None
         # import pdb;pdb.set_trace()
-        if get_history(ptask, 'complete')[0]==[True] and get_history(ptask, 'complete')[2]==[False]:
-            print 'changed from false to true'
-            ptask.completeDate=datetime.datetime.utcnow()
-        if get_history(ptask, 'complete')[0]==[False] and get_history(ptask, 'complete')[2]==[True]:
-            print 'changed from true to false'
-            ptask.completeDate=None
-        else:
-            if get_history(ptask, 'complete')[0]==[True] and get_history(ptask, 'complete')[2]==[None]:
-                ptask.complete=True
-                ptask.completeDate=None
+        # if get_history(ptask, 'complete')[0]==[True] and get_history(ptask, 'complete')[2]==[False]:
+        #     print 'changed from false to true'
+        #     ptask.completeDate=datetime.datetime.utcnow()
+        # if get_history(ptask, 'complete')[0]==[False] and get_history(ptask, 'complete')[2]==[True]:
+        #     print 'changed from true to false'
+        #     ptask.completeDate=None
+        # else:
+        #     if get_history(ptask, 'complete')[0]==[True] and get_history(ptask, 'complete')[2]==[None]:
+        #         ptask.complete=True
+        #         ptask.completeDate=None
+        # import pdb;pdb.set_trace()
+        form.populate_obj(ptask)        
         db.session.commit()
         return redirect(url_for('task_outline',name=name,goal=goal,strategy=strategy))
+    if ptask.completeDate:
+        form.completeDate.data = ptask.completeDate.strftime("%m/%d/%Y")
+    else:
+        form.complete.data=False
+    form.deadline.data = ptask.deadline.strftime("%m/%d/%Y")
     if delete_form.validate_on_submit():
         db.session.delete(ptask)
         db.session.commit()
         return redirect(url_for('task_outline',name=name,goal=goal,strategy=strategy))
-    return render_template('edit_task.html', tform=tform,form=form,project=project,pgoal=pgoal,pstrat=pstrat,ptask=ptask,delete_form=delete_form,P=P)
+    return render_template('edit_task.html',form=form,project=project,pgoal=pgoal,pstrat=pstrat,ptask=ptask,delete_form=delete_form,P=P)
 
 
 @app.route('/graphs')
