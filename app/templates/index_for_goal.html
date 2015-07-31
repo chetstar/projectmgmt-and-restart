@@ -67,7 +67,7 @@
   </div>
 </div>
                   </div></div></div>
-{% for item in q_sum %} 
+{% for item in q_sum %} {% if item[1] !=None %}
       <!-- Example row of columns -->
       <div class="container">
       <div class="row">
@@ -97,7 +97,7 @@
             <div class="panel-body">
          <div class="row">
             <div class="col-md-1 ">
-                <p><a href="{{ url_for('strategy_outline', name = project.id, goal=item[1]) }}" class="btn btn-primary" role="button">Strategies</a></p> </div>
+                <p><a href="{{ url_for('strategy_outline', name = item[0], goal=item[1]) }}" class="btn btn-primary" role="button">Strategies</a></p> </div>
              <div class="col-md-1 ">
                 <form class="horizontal" method="post" role="delete_form" id='delete_form'>
              <div class="col-md-1 "> 
@@ -109,7 +109,7 @@
  </div> </div> </div>
             </div>
           </div></div>
-            {% endfor %}
+          {% endif %}  {% endfor %}
 <br></b></div></div>  
 <div class="well">
       <div class="row">

@@ -187,7 +187,6 @@ def start():
 
 @app.route('/ProjectTree/<name>', methods=['GET','POST'])
 def project_outline(name):
-    # name=request.args.get('name')
     P=models.Projects.query.all()
     project=models.Projects.query.filter_by(id=name).first() 
     G=project.goals.all()
@@ -201,6 +200,7 @@ def project_outline(name):
     func.count(Tasks.id).label("total"),
     Goals.goal.label("Goal_name"),
     ).join(Goals, Projects.goals).outerjoin(Strategies, Goals.strategies).outerjoin(Tasks, Strategies.tasks).group_by(Projects.id,Goals.id).filter(Projects.id == name) )
+    # import pdb;pdb.set_trace()
     if request.method == 'POST' and  gform.submit.data:
         if gform.validate() == False:
             flash('Failed Field validation.')
@@ -317,25 +317,7 @@ def task_outline(name,goal,strategy):
             return redirect(url_for('task_outline',name=name,goal=goal,strategy=strategy))
     return render_template("index_for_task.html",project=project,T=T,tform=tform,pstrat=pstrat,pgoal=pgoal,P=P)
 
-    # import pdb;pdb.set_trace()
-    # if request.method == 'POST':
-    #     if tform.validate() == False:
-    #         flash('Failed Field validation.')
-    #         flash_errors(tform)
-    #         return redirect(url_for('task_outline',name=name,goal=goal,strategy=strategy))
-    #     else:
-    #         if tform.completeDate:
-    #             p=models.Tasks(task=tform.task.data,strat=pstrat,note = tform.note.data,staff=tform.staff.data,deadline=tform.deadline.data,
-    #                 complete=True,created=datetime.datetime.utcnow(), completeDate=tform.completeDate.data)
-    #         else:
-    #             p=models.Tasks(task=tform.task.data,strat=pstrat,note = tform.note.data,staff=tform.staff.data,deadline=tform.deadline.data,
-    #                 complete=False,created=datetime.datetime.utcnow())
-    #         db.session.add(p)
-    #         # import pdb;pdb.set_trace()
-    #         db.session.commit()
-    #         return redirect(url_for('task_outline',name=name,goal=goal,strategy=strategy))
-    # return render_template("index_for_task.html",project=project,T=T,tform=tform,pstrat=pstrat,pgoal=pgoal,P=P)
-
+  
 @app.route('/outlineindex')
 def outline_index():
     P=models.Projects.query.all()
