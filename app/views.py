@@ -171,6 +171,8 @@ def start():
     func.sum(case([(Tasks.complete == True, 1)], else_=0)).label("x"),
     func.sum(case([(and_(Tasks.deadline != None, Tasks.completeDate != None, Tasks.deadline > Tasks.completeDate), 1)], else_=0)).label("y"),
     func.count(Tasks.id).label("total"),
+    Projects.name,
+    Projects.projectleader,
     ).outerjoin(Goals, Projects.goals).outerjoin(Strategies, Goals.strategies).outerjoin(Tasks, Strategies.tasks).group_by(Projects.id)) 
     # import pdb;pdb.set_trace() 
     if request.method == 'POST':
@@ -183,7 +185,7 @@ def start():
             db.session.add(p)
             db.session.commit()
             return redirect(url_for('start'))
-    return render_template("index_for_project.html",pform=pform,P=P,zipit=zip(P,q_sum))
+    return render_template("index_for_project.html",pform=pform,P=P,zipit=zip(P,q_sum),q_sum=q_sum)
 
 @app.route('/ProjectTree/<name>', methods=['GET','POST'])
 def project_outline(name):
